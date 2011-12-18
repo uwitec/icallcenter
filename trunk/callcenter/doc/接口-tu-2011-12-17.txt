@@ -1,0 +1,126 @@
+
+
+bool registerUser( string userid, string passwd,int role ,String phoneNo) ;//role  1:passegger    2:driver
+
+bool confirmRegistion(String userid,String token);
+
+bool uploadphoto(  string userid, byte[] photo ) ;
+
+void reportPosition( int longitude, int latitude );//微度
+
+
+struct  MovingObjects 
+{
+        // absolutedSpeed and directions compose speed vector 
+	double absolutedSpeed; //  km/h
+        double directions; //  the angle relevent to the north pole;
+        
+        int   longitude;//微度
+        int  latitude;   //微度
+
+};
+struct  Passengers : public MovingObjects 
+{
+ string    userid；
+string   age；
+string   gender；
+string   phoneNo；
+string    idcardNo；//身份证
+string    headPicUrl；//头像
+
+
+};
+
+struct Taxi: public MovingObjects
+{
+string  carNO;//车牌号
+string company；//所属公司
+bool iscertificated；//是否认证过，正统公司的还是私家车
+int   age;//车的年龄
+
+
+};
+
+struct Driver: public MovingObjects
+{
+   string   userid;
+   string   username;
+string headPhotoUrl;
+int rank;
+string  phoneNo;
+string QQ;
+string idcardNo; //身份证号
+string  gender;
+string age;
+string driverlicense;
+string employeeNo；
+};
+
+//  COLOR= 0; return all objects 
+// COLOR =1 ; GREEN ; 
+// COLOR = 2; READ;
+// COLOR = 3 ; BLUE ;
+
+List< Taxi  >  queryVehicles( int color ,  rectangle  rect );
+
+List< Passengers >  queryPassengers( int color ,  rectangle  rect );
+
+struct TaxiReq{
+
+   string  passengerId;//谁发的
+   string  driverID；//发给谁的 
+   int     timeout; // minutes;
+   double  fromlongitude;
+   double  fromlatitude;
+
+   // 
+   string  destination_place;
+   // or 
+   double  tolongitude;  // I think the user has no idea of the longitude and latitude but the destination place ;
+   double  tolatitude;
+  
+};
+
+
+struct helloReq{
+string  driverID；//发给谁的 
+string  passengerId;//谁发的
+   int     timeout; // minutes;
+
+}
+
+// only send taxirequest, I think this is a asynchronous mode, so 
+//  the sender does not need to wait to handle the response message .
+// the response message may be handled by other thread at later.
+
+void callTaxi( TaxiReq  tr);
+void   helloPassenger( HelloReq req);
+
+// the driver may want to actively query the passengers without waiting the passenders's // request.
+
+List<TaxiReq >  queryTaxiRequest (  );
+
+
+bool  lockTarget (string  driverid, string  passengerId ) ;//接活
+
+bool  unLockTarget (string driverid, string passengerId );   //活跑完了，释放订单 
+
+bool  rejectTarget(string driverid, string passengerId );//不接活
+
+void  reportRating( string  dest_userid /* passenger or driver */, int rating );//rating     1  2 3 4  5
+
+
+bool  login( string userid , string passwd );
+
+bool  logout( string userid ); 
+
+
+struct BusStop{
+double lan;
+double alt;
+string name;
+double distance;
+};
+List<BusStop> getBusStop(rectangle  rect)
+
+

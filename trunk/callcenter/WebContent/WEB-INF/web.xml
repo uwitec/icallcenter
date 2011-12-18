@@ -16,6 +16,14 @@
     <url-pattern>/taxi</url-pattern>
   </servlet-mapping>
   
+  <session-config> 
+    <session-timeout>1</session-timeout> <!-- 10 minutes -->
+  </session-config>
+
+  <listener> 
+    <listener-class>com.callcenter.taxi.listener.CallCenterListener</listener-class> 
+  </listener> 
+
   <welcome-file-list>
     <welcome-file>index.html</welcome-file>
     <welcome-file>index.htm</welcome-file>

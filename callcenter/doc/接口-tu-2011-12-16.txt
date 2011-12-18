@@ -1,0 +1,81 @@
+                                                                     
+                                                                     
+                                                                     
+                                             
+
+
+bool registerUser( string userid, string passwd ) ;
+
+bool uploadphoto(  string userid, string filename_withpath ) ;
+
+void reportPosition( double longitude, double latitude );
+
+
+struct  MovingObjects 
+{
+        // absolutedSpeed and directions compose speed vector 
+	double absolutedSpeed; //  km/h
+        double directions; //  the angle relevent to the north pole;
+        
+        double longitude;
+        double latitude;   
+
+};
+struct  Passengers : public MovingObjects 
+{
+ 
+
+};
+
+struct Taxi: public MovingObjects
+{
+
+
+};
+
+//  COLOR= 0; return all objects 
+// COLOR =1 ; GREEN ; 
+// COLOR = 2; READ;
+// COLOR = 3 ; BLUE ;
+
+List< Passengers  >  queryVehicles( int color ,  rectangle  rect );
+
+List< Taxi >  queryPassengers( int color ,  rectangle  rect );
+
+struct TaxiReq{
+
+   string  userId;
+   int     timeout; // minutes;
+   double  fromlongitude;
+   double  fromlatitude;
+
+   // 
+   string  destination_place;
+   // or 
+   double  tolongitude;  // I think the user has no idea of the longitude and latitude but the destination place ;
+   double  tolatitude;
+  
+};
+
+
+// only send taxirequest, I think this is a asynchronous mode, so 
+//  the sender does not need to wait to handle the response message .
+// the response message may be handled by other thread at later.
+
+void sendTaxiRequest( TaxiReq  tr, string driverid );
+
+// the driver may want to actively query the passengers without waiting the passenders's // request.
+
+List<TaxiReq >  queryTaxiRequest (  );
+
+
+bool  lockTarget ( string  passengerId ) ;
+
+bool  unLockTarget ( string passengerId ); 
+
+void  reportRank( string  dest_userid /* passenger or driver */, int rank );
+
+bool  login( string userid , string passwd );
+
+bool  logout( string userid ); 
+

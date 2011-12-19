@@ -20,4 +20,16 @@ public class CallTaxiServiceImpl extends HessianServlet implements CallTaxiServi
 		return userID.hashCode();
 	}
 
+	@Override
+	public int login(String userID, String password) {
+		// TODO Auto-generated method stub
+		return 0;
+	}
+
+	@Override
+	public int logout() {
+		// TODO Auto-generated method stub
+		return 0;
+	}
+
 }

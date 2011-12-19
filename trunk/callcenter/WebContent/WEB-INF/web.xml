@@ -17,7 +17,7 @@
   </servlet-mapping>
   
   <session-config> 
-    <session-timeout>1</session-timeout> <!-- 10 minutes -->
+    <session-timeout>10</session-timeout> <!-- 10 minutes -->
   </session-config>
 
   <listener> 

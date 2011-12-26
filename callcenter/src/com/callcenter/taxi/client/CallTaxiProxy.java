@@ -29,9 +29,6 @@
 
 package com.callcenter.taxi.client;
 
-import java.net.CookieHandler;
-import java.net.CookieManager;
-import java.net.CookiePolicy;
 import java.net.MalformedURLException;
 import java.util.List;
 
@@ -75,11 +72,7 @@ public class CallTaxiProxy {
   private CallTaxiService getService()
   {
     if (_service == null) {
-//    	CookieHandler.setDefault(new CookieManager(null, CookiePolicy.ACCEPT_ALL));
-//      HessianProxyFactory factory = new HessianProxyFactory();
-
-      System.setProperty(HessianConnectionFactory.class.getName(), CookieHessianURLConnectionFactory.class.getName());
-      MyHessianProxyFactory factory = new MyHessianProxyFactory();
+    	HessianProxyFactory factory = getHessianProxyFactory();
       try {
         _service = (CallTaxiService) factory.create(CallTaxiService.class, _url);
       }
@@ -89,6 +82,25 @@ public class CallTaxiProxy {
 
     return _service;
   }
+
+  /**
+   * Retrieves the HessianProxyFactory
+   * @return
+   */
+private HessianProxyFactory getHessianProxyFactory() {
+	/**
+	 * for android api level 9
+	 */
+	//    	CookieHandler.setDefault(new CookieManager(null, CookiePolicy.ACCEPT_ALL));
+	//      HessianProxyFactory factory = new HessianProxyFactory();
+	
+	/**
+	 *  for android api level 8
+	 */
+	      System.setProperty(HessianConnectionFactory.class.getName(), CookieHessianURLConnectionFactory.class.getName());
+	      MyHessianProxyFactory factory = new MyHessianProxyFactory();
+	return factory;
+}
 
  
   public int echo(String userID){

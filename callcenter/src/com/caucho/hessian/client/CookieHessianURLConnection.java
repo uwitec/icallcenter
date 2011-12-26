@@ -5,6 +5,7 @@ import java.net.HttpURLConnection;
 import java.net.URL;
 import java.net.URLConnection;
 import java.util.List;
+import java.util.Map;
 
 /**  
 *   
@@ -27,8 +28,30 @@ public class CookieHessianURLConnection extends HessianURLConnection {
 	@Override
 	protected void parseResponseHeaders(HttpURLConnection conn) throws IOException{
 		super.parseResponseHeaders(conn); 
-		List<String> _cookies = conn.getHeaderFields().get("Set-Cookie");
-		if (_cookies != null) cookies = _cookies;
+		Map<String, List<String>> responseHeaders = conn.getHeaderFields();
+		
+		// pre-condition check
+        if (responseHeaders == null) {
+            throw new IllegalArgumentException("Argument is null");
+        }
+        
+        for (String headerKey : responseHeaders.keySet()) {
+        	// RFC 2965 3.2.2, key must be 'Set-Cookie2'
+            // we also accept 'Set-Cookie' here for backward compatibility
+            if (headerKey == null
+                || !(headerKey.equalsIgnoreCase("Set-Cookie2")
+                     || headerKey.equalsIgnoreCase("Set-Cookie")
+                    )
+                )
+            {
+                continue;
+            }
+            
+            List<String> _cookies = responseHeaders.get(headerKey);
+    		cookies = _cookies;
+        }
+        
+		
 	}
 	
 	public void addRequestHeaders() {

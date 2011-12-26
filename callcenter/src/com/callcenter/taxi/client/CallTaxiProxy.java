@@ -37,7 +37,10 @@ import java.util.List;
 
 import java.io.*;
 
+import com.caucho.hessian.client.CookieHessianURLConnectionFactory;
+import com.caucho.hessian.client.HessianConnectionFactory;
 import com.caucho.hessian.client.HessianProxyFactory;
+import com.caucho.hessian.client.MyHessianProxyFactory;
 
 /**
  * A small wrapper around the WordService client proxy.  This class
@@ -72,9 +75,11 @@ public class CallTaxiProxy {
   private CallTaxiService getService()
   {
     if (_service == null) {
-    	CookieHandler.setDefault(new CookieManager(null, CookiePolicy.ACCEPT_ALL));
-      HessianProxyFactory factory = new HessianProxyFactory();
+//    	CookieHandler.setDefault(new CookieManager(null, CookiePolicy.ACCEPT_ALL));
+//      HessianProxyFactory factory = new HessianProxyFactory();
 
+      System.setProperty(HessianConnectionFactory.class.getName(), CookieHessianURLConnectionFactory.class.getName());
+      MyHessianProxyFactory factory = new MyHessianProxyFactory();
       try {
         _service = (CallTaxiService) factory.create(CallTaxiService.class, _url);
       }

@@ -1,5 +1,7 @@
 package com.callcenter.taxi.service;
 
+import javax.servlet.ServletConfig;
+import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
 
 import com.callcenter.taxi.client.CallTaxiService;
@@ -8,6 +10,16 @@ import com.caucho.services.server.ServiceContext;
 
 public class CallTaxiServiceImpl extends HessianServlet implements CallTaxiService{
 
+	@Override
+	public void init(ServletConfig config)throws ServletException{
+		super.init(config);
+	}
+	
+	@Override
+	public void destroy() {
+		super.destroy();
+	}
+	
 	@Override
 	public int echo(String userID) {
 		

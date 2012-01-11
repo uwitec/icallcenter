@@ -1,8 +1,6 @@
 package com.lbs.service;
 
 import java.io.BufferedReader;
-import java.io.File;
-import java.io.FileInputStream;
 import java.io.InputStreamReader;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
@@ -15,19 +13,19 @@ public class MarsWgs {
 	private Boolean initTable = false;
 
 	private static MarsWgs theInstance = new MarsWgs();
-	
-	private MarsWgs(){
-		
+
+	private MarsWgs() {
+
 	}
-	
-	public static MarsWgs instance(){
+
+	public static MarsWgs instance() {
 		return theInstance;
 	}
-	
-	public void init() throws Exception{
+
+	public void init() throws Exception {
 		this.ReadText();
 	}
-	
+
 	public GPSEntity rectify(double x, double y) {
 		int i, j, k;
 		double x1, y1, x2, y2, x3, y3, x4, y4, xtry, ytry, dx, dy;
@@ -41,7 +39,7 @@ public class MarsWgs {
 		ytry = y;
 
 		for (k = 0; k < 10; ++k) {
-			// 只对中国国境内数据转捄1�7
+			// 只对中国国境内数据转捄1�7
 			if (xtry < 72 || xtry > 137.9 || ytry < 10 || ytry > 54.9) {
 				gps.setX(x);
 				gps.setY(y);
@@ -101,15 +99,12 @@ public class MarsWgs {
 
 	}
 
-	private String readFile(String path) throws Exception {
-		File file = null;
+	private String readFile(String resource) throws Exception {
 		BufferedReader br = null;
-		StringBuffer buffer = null;
+		StringBuffer buffer = new StringBuffer();
 
-		file = new File(path);
-		buffer = new StringBuffer();
-		InputStreamReader isr = new InputStreamReader(
-				new FileInputStream(file), "utf-8");
+		InputStreamReader isr = new InputStreamReader(Thread.currentThread()
+				.getContextClassLoader().getResourceAsStream(resource), "utf-8");
 		br = new BufferedReader(isr);
 		int s;
 		while ((s = br.read()) != -1) {

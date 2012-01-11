@@ -1,11 +1,11 @@
 package com.lbs.client;
 
-public class GPSEntity {
+public class GPSEntity implements java.io.Serializable{
 	
-	private double x;//¾­¶È
-	private double y;//Î³¶È
-	private double h;//¸ß¶È
-	private double s;//ËÙ¶È
+	private double x;//ï¿½ï¿½ï¿½ï¿½
+	private double y;//Î³ï¿½ï¿½
+	private double h;//ï¿½ß¶ï¿½
+	private double s;//ï¿½Ù¶ï¿½
 	
 	public double getX() {
 		return x;

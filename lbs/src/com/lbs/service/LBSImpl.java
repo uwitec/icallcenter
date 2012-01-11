@@ -21,8 +21,7 @@ public class LBSImpl extends HessianServlet implements LBS {
 	
 	@Override
 	public GPSEntity rectify(double x, double y) {
-		//return MarsWgs.instance().rectify(x, y);
-		return null;
+		return MarsWgs.instance().rectify(x, y);
 	}
 
 }

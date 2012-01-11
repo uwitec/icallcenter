@@ -10,7 +10,7 @@ import com.lbs.client.GPSEntity;
 public class MarsWgs {
 	double[] TableX = new double[660 * 450];
 	double[] TableY = new double[660 * 450];
-	private Boolean initTable = false;
+	private boolean initTable = false;
 
 	private static MarsWgs theInstance = new MarsWgs();
 

@@ -2,6 +2,10 @@ package com.lbs.client;
 
 public class GPSEntity implements java.io.Serializable{
 	
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 9154705963452521545L;
 	private double x;//����
 	private double y;//γ��
 	private double h;//�߶�

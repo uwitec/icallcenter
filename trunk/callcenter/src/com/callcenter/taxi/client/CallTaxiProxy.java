@@ -35,7 +35,6 @@ import java.util.List;
 import java.io.*;
 
 import com.caucho.hessian.client.CookieHessianURLConnectionFactory;
-import com.caucho.hessian.client.HessianConnectionFactory;
 import com.caucho.hessian.client.HessianProxyFactory;
 import com.caucho.hessian.client.MyHessianProxyFactory;
 
@@ -97,13 +96,18 @@ private HessianProxyFactory getHessianProxyFactory() {
 	/**
 	 *  for android api level 8
 	 */
-	      System.setProperty(HessianConnectionFactory.class.getName(), CookieHessianURLConnectionFactory.class.getName());
-	      MyHessianProxyFactory factory = new MyHessianProxyFactory();
+//	      System.setProperty(HessianConnectionFactory.class.getName(), CookieHessianURLConnectionFactory.class.getName());
+//	      MyHessianProxyFactory factory = new MyHessianProxyFactory();
+	HessianProxyFactory factory = new HessianProxyFactory();
 	return factory;
 }
 
  
   public int echo(String userID){
 	  return getService().echo( userID );
+  }
+  
+  public List<Passenger> queryPassengers(int color, Rectangle rect){
+	  return getService().queryPassengers(color, rect);
   }
 }

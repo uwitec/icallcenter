@@ -11,8 +11,10 @@ public class LBSTest {
 	public static void main(String[] args) {
 		// TODO Auto-generated method stub
 		LBSProxy.setServerURL("http://dinkysun.kf0309.3g.qq.com/lbs/lbs");
+		for(int i=0; i<10; i++){
 		GPSEntity g = LBSProxy.CLIENT.rectify(100.7, 20.5);
 		System.out.println(g.getX() + "|" + g.getY());
+		}
 	}
 
 }

@@ -9,6 +9,14 @@ public class EhcacheCacheServiceImpl implements CacheService {
 
 	private Cache cache;
 	
+	public Cache getCache() {
+		return cache;
+	}
+
+	public void setCache(Cache cache) {
+		this.cache = cache;
+	}
+
 	@Override
 	public Object get(String key) {
 		Element element = cache.get(key);

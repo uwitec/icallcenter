@@ -3,11 +3,17 @@ package com.callcenter.infrastructure;
 import java.util.List;
 
 import net.sf.ehcache.Cache;
+import net.sf.ehcache.CacheManager;
 import net.sf.ehcache.Element;
 
 public class EhcacheCacheServiceImpl implements CacheService {
 
 	private Cache cache;
+	
+	public EhcacheCacheServiceImpl(String cacheName){
+		CacheManager manager = new CacheManager("/ehcache.xml");  
+		cache = manager.getCache(cacheName);   
+	}
 	
 	public Cache getCache() {
 		return cache;

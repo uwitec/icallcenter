@@ -10,7 +10,7 @@ public class EhcacheCacheServiceImpl implements CacheService {
 	private Cache cache;
 	
 	@Override
-	public Object get(Object key) {
+	public Object get(String key) {
 		Element element = cache.get(key);
         if (element == null) {
             return null;
@@ -19,24 +19,24 @@ public class EhcacheCacheServiceImpl implements CacheService {
 	}
 
 	@Override
-	public void put(Object key, Object value) {
+	public void put(String key, Object value) {
 		 cache.put(new Element(key, value));
 	}
 
 	@Override
-	public void put(Object key, Object value, int second) {
+	public void put(String key, Object value, int ttlSeconds) {
 		Element element = new Element(key,value);
-        element.setTimeToLive(second);
+        element.setTimeToLive(ttlSeconds);
         cache.put(element);
 	}
 
 	@Override
-	public void remove(Object key) {
+	public void remove(String key) {
 		 cache.remove(key);
 	}
 
 	@Override
-	public List<Object> getKeys() {
+	public List<String> getKeys() {
 		return cache.getKeys();
 	}
 

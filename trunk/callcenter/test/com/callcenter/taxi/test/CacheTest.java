@@ -1,6 +1,7 @@
 package com.callcenter.taxi.test;
 
 import java.io.Serializable;
+import java.util.List;
 
 import net.sf.ehcache.Cache;
 import net.sf.ehcache.CacheManager;
@@ -22,6 +23,11 @@ public class CacheTest {
 		element = cache.get("key1");
 		Serializable value = element.getValue();
 		System.out.println(value);
+		
+		List<Object> l = cache.getKeys();
+		for(Object s  :l){
+			System.out.println(s);
+		}
 
 	}
 

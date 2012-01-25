@@ -58,4 +58,10 @@ public class CallTaxiServiceImpl extends HessianServlet implements CallTaxiServi
 		return passengers;
 	}
 
+	@Override
+	public void reportPosition(double longitude, double latitude) {
+		// TODO Auto-generated method stub
+		
+	}
+
 }

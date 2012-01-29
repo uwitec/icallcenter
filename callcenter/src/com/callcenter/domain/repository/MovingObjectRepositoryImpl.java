@@ -22,8 +22,7 @@ public class MovingObjectRepositoryImpl implements MovingObjectRepository {
 		MovingObject mo = (MovingObject) movingObjectCache.get(uin);
 		if(mo == null) return;
 		
-		mo.setLongitude(longitude);
-		mo.setLatitude(latitude);
+		mo.updatePosition(longitude, latitude);
 		movingObjectCache.put(uin, mo);
 		
 	}

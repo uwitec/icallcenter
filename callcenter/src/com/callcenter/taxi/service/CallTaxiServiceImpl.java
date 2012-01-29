@@ -53,8 +53,7 @@ public class CallTaxiServiceImpl extends HessianServlet implements CallTaxiServi
 	public int login(String userID, String password) {
 		MovingObject mo = movingObjectRepository.findMovingObject(userID, password);
 		if(mo == null) return 1;
-		
-		movingObjectCache.put(userID, mo);
+
 		setUINIntoSession(userID);
 		
 		return 0;

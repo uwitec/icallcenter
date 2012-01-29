@@ -9,7 +9,6 @@ import javax.servlet.http.HttpServletRequest;
 
 import com.callcenter.domain.entity.MovingObject;
 import com.callcenter.domain.repository.MovingObjectRepository;
-import com.callcenter.domain.service.PositionService;
 import com.callcenter.infrastructure.CacheService;
 import com.callcenter.taxi.client.CallTaxiService;
 import com.callcenter.taxi.client.Passenger;
@@ -23,8 +22,6 @@ public class CallTaxiServiceImpl extends HessianServlet implements CallTaxiServi
 	
 	private CacheService movingObjectCache;
 	
-	private PositionService positionService;
-	
 	@Override
 	public void init(ServletConfig config)throws ServletException{
 		super.init(config);
@@ -32,7 +29,7 @@ public class CallTaxiServiceImpl extends HessianServlet implements CallTaxiServi
 		
 		movingObjectRepository = (MovingObjectRepository)BeanFactory.instance().getBean("movingObjectRepository");
 		movingObjectCache = (CacheService)BeanFactory.instance().getBean("movingObjectCache");
-		positionService = (PositionService)BeanFactory.instance().getBean("positionService");
+
 	}
 	
 	@Override
@@ -95,7 +92,7 @@ public class CallTaxiServiceImpl extends HessianServlet implements CallTaxiServi
 			return ;
 		}
 		
-		positionService.updatePosition(uin, longitude, latitude);
+		movingObjectRepository.updatePosition(uin, longitude, latitude);
 		
 	}
 

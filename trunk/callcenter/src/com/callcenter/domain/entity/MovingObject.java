@@ -29,5 +29,10 @@ public class MovingObject {
 	}
 	public void setLatitude(double latitude) {
 		this.latitude = latitude;
-	} 
+	}
+	
+	public void updatePosition(double longitude, double latitude){
+		this.longitude = longitude;
+		this.latitude = latitude;
+	}
 }

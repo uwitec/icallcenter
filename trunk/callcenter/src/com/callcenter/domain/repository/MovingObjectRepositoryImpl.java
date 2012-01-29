@@ -13,8 +13,15 @@ public class MovingObjectRepositoryImpl implements MovingObjectRepository {
 	
 	@Override
 	public MovingObject findMovingObject(String uin, String password) {
+		MovingObject mo = (MovingObject) movingObjectCache.get(uin);
+		if(mo != null) return mo;
 		
-		return null;
+		//get moving object from db
+		if(mo == null) return null;
+		
+		//set moving into cache
+		movingObjectCache.put(uin, mo);
+		return mo;
 	}
 
 	@Override

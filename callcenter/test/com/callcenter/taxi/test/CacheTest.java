@@ -3,6 +3,8 @@ package com.callcenter.taxi.test;
 import java.io.Serializable;
 import java.util.List;
 
+import com.callcenter.taxi.client.Rectangle;
+
 import net.sf.ehcache.Cache;
 import net.sf.ehcache.CacheManager;
 import net.sf.ehcache.Element;
@@ -28,7 +30,16 @@ public class CacheTest {
 		for(Object s  :l){
 			System.out.println(s);
 		}
+		
+		Rectangle r = new Rectangle();
+		r.setX1(1233);
+		element = new Element("key11", r);  
+		cache.put(element);   
 
+		r.setX1(5454);
+		element = cache.get("key11");
+		value = element.getValue();
+		System.out.println(((Rectangle)value).getX1());
 	}
 
 }

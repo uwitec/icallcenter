@@ -1,6 +1,7 @@
 package com.callcenter.domain.entity;
 
 public class MovingObject {
+	String uin;
 	// absolutedSpeed and directions compose speed vector
 	private double absolutedSpeed; // km/h
 	private double directions; // the angle relevent to the north pole;
@@ -31,12 +32,20 @@ public class MovingObject {
 		this.latitude = latitude;
 	}
 	
+	public String getUin() {
+		return uin;
+	}
+	public void setUin(String uin) {
+		this.uin = uin;
+	}
 	public void updatePosition(double longitude, double latitude){
 		this.longitude = longitude;
 		this.latitude = latitude;
 	}
 	
 	public boolean isInTheArea(Area area){
+		if(longitude <area.getX2() && longitude >area.getX1() && latitude < area.getY1() && latitude > area.getY2())
+			return true;
 		return false;
 	}
 }

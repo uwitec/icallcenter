@@ -77,7 +77,7 @@ public class CallTaxiServiceImpl extends HessianServlet implements CallTaxiServi
 	@Override
 	public List<Passenger> queryPassengers(int color, Rectangle rect) {
 		List<com.callcenter.domain.entity.Passenger> passengers = movingObjectRepository.findPassengers(new Area(rect.getX1(), rect.getY1(), rect.getX2(), rect.getY2()));
-		return null;
+		return PassengerFactory.create(passengers);
 	}
 
 	@Override

@@ -44,7 +44,7 @@ public class MovingObject implements java.io.Serializable{
 	}
 	
 	public boolean isInTheArea(Area area){
-		if(longitude <area.getX2() && longitude >area.getX1() && latitude < area.getY1() && latitude > area.getY2())
+		if(longitude <area.getX2() && longitude >area.getX1() && latitude > area.getY1() && latitude < area.getY2())
 			return true;
 		return false;
 	}

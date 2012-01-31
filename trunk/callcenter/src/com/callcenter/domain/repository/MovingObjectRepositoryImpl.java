@@ -34,4 +34,10 @@ public class MovingObjectRepositoryImpl implements MovingObjectRepository {
 		
 	}
 
+	@Override
+	public MovingObject getCachedMovingObject(String uin) {
+		MovingObject mo = (MovingObject) movingObjectCache.get(uin);
+		return mo;
+	}
+
 }

@@ -1,6 +1,6 @@
 package com.callcenter.domain.entity;
 
-public class MovingObject {
+public class MovingObject implements java.io.Serializable{
 	String uin;
 	// absolutedSpeed and directions compose speed vector
 	private double absolutedSpeed; // km/h

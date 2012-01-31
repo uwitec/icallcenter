@@ -105,6 +105,14 @@ private HessianProxyFactory getHessianProxyFactory() {
 	  return getService().echo( userID );
   }
   
+  public int login(String userID, String password){
+	  return getService().login(userID, password);
+  }
+  
+  public void reportPosition(double longitude, double latitude){
+	  getService().reportPosition(longitude, latitude);
+  }
+  
   public List<Passenger> queryPassengers(int color, Rectangle rect){
 	  return getService().queryPassengers(color, rect);
   }

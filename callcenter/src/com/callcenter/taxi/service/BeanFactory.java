@@ -1,7 +1,10 @@
 package com.callcenter.taxi.service;
 
+import java.net.URL;
 import java.util.HashMap;
 import java.util.Map;
+
+import net.sf.ehcache.CacheManager;
 
 import com.callcenter.domain.repository.MovingObjectRepository;
 import com.callcenter.domain.repository.MovingObjectRepositoryImpl;
@@ -10,6 +13,8 @@ import com.callcenter.infrastructure.EhcacheCacheServiceImpl;
 
 public class BeanFactory {
 
+	private static final String path = "/ehcache.xml";
+	
 	private static BeanFactory theInstance = new BeanFactory();
 	
 	private Map<String, Object> beanInstances  = new HashMap<String, Object>();
@@ -26,12 +31,26 @@ public class BeanFactory {
 	private CacheService movingObjectCache;
 	
 	public void init(){
-		movingObjectCache = new EhcacheCacheServiceImpl("movingObjectCache");
-		beanInstances.put("movingObjectCache", movingObjectCache);
+		initCacheService();
 		
+		initRepository();
+	}
+
+	private void initRepository() {
 		movingObjectRepository = new MovingObjectRepositoryImpl();
 		beanInstances.put("movingObjectRepository", movingObjectRepository);
 		((MovingObjectRepositoryImpl)movingObjectRepository).setMovingObjectCache(movingObjectCache);
+	}
+	
+	private void initCacheService(){
+		URL url = getClass().getResource(path);
+		CacheManager manager = CacheManager.create(url);  
+		movingObjectCache = new EhcacheCacheServiceImpl(manager,"movingObjectCache");
+		beanInstances.put("movingObjectCache", movingObjectCache);
+	}
+	
+	public void destroy() {
+		CacheManager.create().shutdown();
 	}
 	
 	public Object getBean(String beanName){

@@ -714,7 +714,7 @@ Here is an example of CacheManager level resource tuning, which will use up to 4
            diskSpoolBufferSizeMB="20"
            timeToIdleSeconds="300"
            timeToLiveSeconds="600"
-           memoryStoreEvictionPolicy="LFU"
+           memoryStoreEvictionPolicy="LRU"
            transactionalMode="off"
             />
 

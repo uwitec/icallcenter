@@ -16,7 +16,7 @@ public class CacheTest {
 	 */
 	public static void main(String[] args) {
 		// TODO Auto-generated method stub
-		String cacheName = "sampleCache1";  
+		String cacheName = "movingObjectCache";  
 		CacheManager manager = new CacheManager("src/ehcache.xml");  
 		Cache cache = manager.getCache(cacheName);   
 		Element element = new Element("key1", "value1");  
@@ -31,7 +31,7 @@ public class CacheTest {
 			System.out.println(s);
 		}
 		
-		Rectangle r = new Rectangle();
+		Rectangle r = new Rectangle(1,1,1,1);
 		r.setX1(1233);
 		element = new Element("key11", r);  
 		cache.put(element);   

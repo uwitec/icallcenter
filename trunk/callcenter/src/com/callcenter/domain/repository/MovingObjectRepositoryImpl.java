@@ -22,6 +22,9 @@ public class MovingObjectRepositoryImpl implements MovingObjectRepository {
 		if(mo != null) return mo;
 		
 		//get moving object from db
+		Passenger p = new Passenger();
+		p.setUin(uin);
+		mo = p;
 		if(mo == null) return null;
 		
 		//set moving into cache
@@ -35,7 +38,7 @@ public class MovingObjectRepositoryImpl implements MovingObjectRepository {
 		if(mo == null) return;
 		
 		mo.updatePosition(longitude, latitude);
-		movingObjectCache.put(uin, mo);
+	//	movingObjectCache.put(uin, mo);
 		
 	}
 

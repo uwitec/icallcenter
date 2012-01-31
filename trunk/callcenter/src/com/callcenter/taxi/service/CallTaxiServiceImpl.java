@@ -36,6 +36,7 @@ public class CallTaxiServiceImpl extends HessianServlet implements CallTaxiServi
 	@Override
 	public void destroy() {
 		super.destroy();
+		BeanFactory.instance().destroy();
 	}
 	
 	@Override
@@ -76,6 +77,13 @@ public class CallTaxiServiceImpl extends HessianServlet implements CallTaxiServi
 
 	@Override
 	public List<Passenger> queryPassengers(int color, Rectangle rect) {
+		String uin;
+		try {
+			uin = getUINFromSession();
+		} catch (AuthenticationException e) {
+			return null;
+		}
+		
 		List<com.callcenter.domain.entity.Passenger> passengers = movingObjectRepository.findPassengers(new Area(rect.getX1(), rect.getY1(), rect.getX2(), rect.getY2()));
 		return PassengerFactory.create(passengers);
 	}

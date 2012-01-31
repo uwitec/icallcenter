@@ -10,7 +10,7 @@ public class PassengerTest {
 
 	public static void main(String[] args){
 		CallTaxiProxy.setServerURL("http://dinkysun.kf0309.3g.qq.com/callcenter/taxi");
-		List<Passenger> l = CallTaxiProxy.CLIENT.queryPassengers(0, new Rectangle());
+		List<Passenger> l = CallTaxiProxy.CLIENT.queryPassengers(0, new Rectangle(1,1,1,1));
 		System.out.println(l.size());
 		for(Passenger p: l){
 			System.out.println(p.getPhoneNo());

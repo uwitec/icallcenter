@@ -1,10 +1,16 @@
 package com.callcenter.domain.entity;
 
-import com.callcenter.taxi.client.Rectangle;
-
 public class Area {
+	
+	/**
+	 * left bottom point
+	 */
 	private double x1;
 	private double y1;
+	
+	/**
+	 * right top point
+	 */
 	private double x2;
 	private double y2;
 	

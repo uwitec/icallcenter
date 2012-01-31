@@ -7,6 +7,7 @@ import javax.servlet.ServletConfig;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
 
+import com.callcenter.domain.entity.Area;
 import com.callcenter.domain.entity.MovingObject;
 import com.callcenter.domain.repository.MovingObjectRepository;
 import com.callcenter.infrastructure.CacheService;
@@ -75,11 +76,8 @@ public class CallTaxiServiceImpl extends HessianServlet implements CallTaxiServi
 
 	@Override
 	public List<Passenger> queryPassengers(int color, Rectangle rect) {
-		List<Passenger> passengers = new ArrayList<Passenger>();
-		Passenger passenger =  new Passenger();
-		passenger.setPhoneNo("45466");
-		passengers.add(passenger);
-		return passengers;
+		List<com.callcenter.domain.entity.Passenger> passengers = movingObjectRepository.findPassengers(new Area(rect.getX1(), rect.getY1(), rect.getX2(), rect.getY2()));
+		return null;
 	}
 
 	@Override

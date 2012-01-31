@@ -1,6 +1,11 @@
 package com.callcenter.domain.repository;
 
+import java.util.ArrayList;
+import java.util.List;
+
+import com.callcenter.domain.entity.Area;
 import com.callcenter.domain.entity.MovingObject;
+import com.callcenter.domain.entity.Passenger;
 import com.callcenter.infrastructure.CacheService;
 
 public class MovingObjectRepositoryImpl implements MovingObjectRepository {
@@ -38,6 +43,20 @@ public class MovingObjectRepositoryImpl implements MovingObjectRepository {
 	public MovingObject getCachedMovingObject(String uin) {
 		MovingObject mo = (MovingObject) movingObjectCache.get(uin);
 		return mo;
+	}
+
+	@Override
+	public List<Passenger> findPassengers(Area area) {
+		List<Passenger>  result = new ArrayList<Passenger>();
+		List<String> uins = movingObjectCache.getKeys();
+		for(String uin : uins){
+			MovingObject mo = (MovingObject) movingObjectCache.get(uin);
+			if( mo instanceof Passenger){
+				if( mo.isInTheArea(area))
+					result.add((Passenger)mo);
+			}
+		}
+		return result;
 	}
 
 }

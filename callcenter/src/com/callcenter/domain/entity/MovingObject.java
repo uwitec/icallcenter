@@ -35,4 +35,8 @@ public class MovingObject {
 		this.longitude = longitude;
 		this.latitude = latitude;
 	}
+	
+	public boolean isInTheArea(Area area){
+		return false;
+	}
 }

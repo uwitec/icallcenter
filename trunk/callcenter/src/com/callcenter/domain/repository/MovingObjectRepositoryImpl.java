@@ -4,6 +4,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import com.callcenter.domain.entity.Area;
+import com.callcenter.domain.entity.LatLonBox;
 import com.callcenter.domain.entity.MovingObject;
 import com.callcenter.domain.entity.Passenger;
 import com.callcenter.infrastructure.CacheService;
@@ -56,6 +57,20 @@ public class MovingObjectRepositoryImpl implements MovingObjectRepository {
 			MovingObject mo = (MovingObject) movingObjectCache.get(uin);
 			if( mo instanceof Passenger){
 				if( mo.isInTheArea(area))
+					result.add((Passenger)mo);
+			}
+		}
+		return result;
+	}
+
+	@Override
+	public List<Passenger> findPassengers(LatLonBox box) {
+		List<Passenger>  result = new ArrayList<Passenger>();
+		List<String> uins = movingObjectCache.getKeys();
+		for(String uin : uins){
+			MovingObject mo = (MovingObject) movingObjectCache.get(uin);
+			if( mo instanceof Passenger){
+				if( mo.isInTheBox(box))
 					result.add((Passenger)mo);
 			}
 		}

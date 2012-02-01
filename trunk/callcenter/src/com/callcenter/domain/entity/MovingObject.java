@@ -48,4 +48,10 @@ public class MovingObject implements java.io.Serializable{
 			return true;
 		return false;
 	}
+	
+	public boolean isInTheBox(LatLonBox box){
+		if(longitude <box.getEast() && longitude >box.getWest() && latitude > box.getSouth() && latitude < box.getNorth())
+			return true;
+		return false;
+	}
 }

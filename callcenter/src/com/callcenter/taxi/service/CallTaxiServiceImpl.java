@@ -27,17 +27,10 @@ public class CallTaxiServiceImpl extends HessianServlet implements CallTaxiServi
 	@Override
 	public void init(ServletConfig config)throws ServletException{
 		super.init(config);
-		BeanFactory.instance().init();
 		
 		movingObjectRepository = (MovingObjectRepository)BeanFactory.instance().getBean("movingObjectRepository");
 		movingObjectCache = (CacheService)BeanFactory.instance().getBean("movingObjectCache");
 
-	}
-	
-	@Override
-	public void destroy() {
-		super.destroy();
-		BeanFactory.instance().destroy();
 	}
 	
 	@Override

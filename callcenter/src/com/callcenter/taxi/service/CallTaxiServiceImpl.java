@@ -8,6 +8,7 @@ import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
 
 import com.callcenter.domain.entity.Area;
+import com.callcenter.domain.entity.LatLonBox;
 import com.callcenter.domain.entity.MovingObject;
 import com.callcenter.domain.repository.MovingObjectRepository;
 import com.callcenter.infrastructure.CacheService;
@@ -84,7 +85,7 @@ public class CallTaxiServiceImpl extends HessianServlet implements CallTaxiServi
 			return null;
 		}
 		
-		List<com.callcenter.domain.entity.Passenger> passengers = movingObjectRepository.findPassengers(new Area(rect.getX1(), rect.getY1(), rect.getX2(), rect.getY2()));
+		List<com.callcenter.domain.entity.Passenger> passengers = movingObjectRepository.findPassengers(new LatLonBox(rect.getNorth(), rect.getSouth(), rect.getEast(), rect.getWest()));
 		return PassengerFactory.create(passengers);
 	}
 

@@ -15,7 +15,7 @@ public class ReportPositionTest {
 		CallTaxiProxy.setServerURL("http://dinkysun.kf0309.3g.qq.com/callcenter/taxi");
 		System.out.println(CallTaxiProxy.CLIENT.login("sunwei", "sunwei"));
 		CallTaxiProxy.CLIENT.reportPosition(12, 7);
-		List<Passenger> l = CallTaxiProxy.CLIENT.queryPassengers(0, new Rectangle(1,1,100,100));
+		List<Passenger> l = CallTaxiProxy.CLIENT.queryPassengers(0, new Rectangle(100,1,100,1));
 		System.out.println(l.size());
 		for(Passenger p: l){
 			System.out.println(p.getUserid());

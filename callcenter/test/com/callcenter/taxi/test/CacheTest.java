@@ -32,14 +32,14 @@ public class CacheTest {
 		}
 		
 		Rectangle r = new Rectangle(1,1,1,1);
-		r.setX1(1233);
+		r.setNorth(1233);
 		element = new Element("key11", r);  
 		cache.put(element);   
 
-		r.setX1(5454);
+		r.setNorth(5454);
 		element = cache.get("key11");
 		value = element.getValue();
-		System.out.println(((Rectangle)value).getX1());
+		System.out.println(((Rectangle)value).getNorth());
 	}
 
 }

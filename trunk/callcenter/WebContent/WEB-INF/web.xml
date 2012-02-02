@@ -22,7 +22,11 @@
 
   <listener> 
     <listener-class>com.callcenter.taxi.listener.CallCenterListener</listener-class> 
-  </listener> 
+  </listener>
+  
+  <listener> 
+    <listener-class>com.callcenter.taxi.listener.GlobalListener</listener-class> 
+  </listener>  
 
   <welcome-file-list>
     <welcome-file>index.html</welcome-file>

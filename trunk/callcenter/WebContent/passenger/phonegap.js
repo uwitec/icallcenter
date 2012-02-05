@@ -17,7 +17,7 @@
  *     under the License.
  */
 
-// Version 1.2.0
+// Version 1.4.1
 
 if (typeof PhoneGap === "undefined") {
 
@@ -413,7 +413,7 @@ document.addEventListener = function(evt, handler, capture) {
     else {
         // If subscribing to Android backbutton
         if (e === 'backbutton') {
-            PhoneGap.exec(null, null, "App", "overrideBackbutton", [true]);
+            //PhoneGap.exec(null, null, "App", "overrideBackbutton", [true]);
         }
         
         // If subscribing to an event that is handled by a plugin
@@ -668,7 +668,7 @@ PhoneGap.exec = function(success, fail, service, action, args) {
             }
         }
     } catch (e2) {
-        console.log("Error: "+e2);
+        //console.log("Error: "+e2);
     }
 };
 

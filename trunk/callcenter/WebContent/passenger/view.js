@@ -58,18 +58,24 @@ var app = {
 		$(document).bind("backbutton", function(){
 			app.goback();		
 		});
-		$("body").html("<div id='map' style='width:100%; height:" + window.screen.height + "px;'></div>");
-		google.maps.event.addDomListener(window, 'load', function(){
-			//var latitude = position.coords.latitude;
-			//var longitude = position.coords.longitude;
-			var latitude = 22.543099;
-			var longitude = 114.057868;			
-			var myOptions = {
-				  zoom: 15,
-				  center: new google.maps.LatLng(latitude, longitude),
-				  mapTypeId: google.maps.MapTypeId.ROADMAP
-			};
-			window.map = new google.maps.Map(document.getElementById('map'), myOptions);				
-		});	
+		//加载地图
+		main.loadMap();	
 	}
 };
+
+/***************主模块*************/
+var main = {
+	loadMap: function(){
+		$("body").html("<div id='map' style='width:100%; height:" + window.screen.height + "px;'></div>");
+		//var latitude = position.coords.latitude;
+		//var longitude = position.coords.longitude;
+		var latitude = 22.543099;
+		var longitude = 114.057868;			
+		var myOptions = {
+			  zoom: 15,
+			  center: new google.maps.LatLng(latitude, longitude),
+			  mapTypeId: google.maps.MapTypeId.ROADMAP
+		};
+		window.map = new google.maps.Map(document.getElementById('map'), myOptions);	
+	}
+}
